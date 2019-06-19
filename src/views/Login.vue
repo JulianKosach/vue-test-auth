@@ -1,16 +1,27 @@
 <template>
   <div class="login">
-    <h1>This is an Login page</h1>
+    <login-form/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import LoginForm from '@/components/LoginForm';
 
 export default {
   name: 'login',
   components: {
-
+    LoginForm,
   }
 }
 </script>
+
+<style>
+  .login {
+    display: flex;
+    flex: 1;
+    background-color: silver;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
