@@ -42,7 +42,8 @@
 
       parseResponse(resp) {
         this.err = null;
-        alert(JSON.stringify(resp.data));
+        localStorage.userToken = resp.data.token;
+        localStorage.userKey = resp.data.key;
         this.$router.push('home');
       },
 
