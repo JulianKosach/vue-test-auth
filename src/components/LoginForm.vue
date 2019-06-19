@@ -2,12 +2,13 @@
   <form class="form">
     <md-field>
       <label>Email</label>
-      <md-input type="email"  v-model="form.email"></md-input>
+      <md-input type="email"  v-model="form.username"></md-input>
     </md-field>
     <md-field>
       <label>Password</label>
-      <md-input type="password"  v-model="form.pwd"></md-input>
+      <md-input type="password"  v-model="form.password"></md-input>
     </md-field>
+    <p class="md-subheading err" v-if="err">Error: {{err}}</p>
     <md-button class="md-raised md-primary" @click="submit">Login</md-button>
   </form>
 </template>
@@ -21,14 +22,32 @@
     data() {
       return {
         form: new Form({
-          email: '',
-          pwd: ''
-        })
+          username: 'test@demo.webitel.com', // test@demo.webitel.com
+          password: 'T2eDYGfhy0rL3nW3' // T2eDYGfhy0rL3nW3
+        }),
+        err: null,
       }
     },
     methods: {
       submit() {
-        this.form.submit('POST', 'https://cloud-ua1.webitel.com/engine/login')
+        this.form.submit('login')
+          .then(resp => {
+            this.form.reset();
+            this.parseResponse(resp);
+          })
+          .catch(err => {
+            this.parseError(err);
+          });
+      },
+
+      parseResponse(resp) {
+        this.err = null;
+        alert(JSON.stringify(resp.data));
+        this.$router.push('home');
+      },
+
+      parseError(err) {
+        this.err = err.response.data.message || 'Unknown error';
       }
     }
 }
@@ -36,9 +55,13 @@
  
 <style>
   .form {
+    flex: 1;
     background-color: white;
     margin: auto;
-    max-width: 300px;
+    max-width: 480px;
     padding: 30px;
+  }
+  .err {
+    color: red;
   }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h1>This is an Home page</h1>
+    <md-toolbar class="md-primary header">
+      <h3 class="md-title">Home</h3>
+      <md-button @click="logout">Logout</md-button>
+    </md-toolbar>
   </div>
 </template>
 
@@ -11,6 +14,26 @@ export default {
   name: 'home',
   components: {
 
+  },
+  methods: {
+    logout() {
+      this.$router.replace('/login');
+    }
   }
 }
 </script>
+
+<style>
+  .home {
+    display: flex;
+    flex: 1;
+    background-color: #eaeaea;
+    justify-content: stretch;
+    align-items: flex-start;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+

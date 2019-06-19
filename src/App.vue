@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <md-content id="app" class="md-scrollbar">
     <router-view/>
-  </div>
+  </md-content>
 </template>
 
 <style>

@@ -20,7 +20,7 @@ export default {
   .login {
     display: flex;
     flex: 1;
-    background-color: silver;
+    background-color: #eaeaea;
     align-items: center;
     justify-content: center;
   }

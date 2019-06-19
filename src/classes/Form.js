@@ -1,3 +1,5 @@
+import HttpService from '@/services/HttpService';
+
 export default class Form {
   constructor(data) {
     this.originalData = data;
@@ -23,16 +25,11 @@ export default class Form {
     }
   }
 
-  post(url) {
-    return this.submit('post', url);
+  submit(method) {
+    return HttpService[method]( this.data() );
   }
 
-  submit(requestType, url) {
-    alert(requestType + url);
-  }
-
-  onSuccess(data) {
-    alert(data.message);
+  onSuccess() {
     this.reset();
   }
 }
