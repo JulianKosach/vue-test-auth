@@ -7,11 +7,17 @@
 <script>
 // @ is an alias to /src
 import LoginForm from '@/components/LoginForm';
+import HttpService from '@/services/HttpService';
 
 export default {
   name: 'login',
   components: {
     LoginForm,
+  },
+  mounted() {
+    if (HttpService.isUserLogged()) {
+      this.$router.replace('/home');
+    }
   }
 }
 </script>

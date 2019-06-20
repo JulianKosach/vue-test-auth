@@ -48,8 +48,17 @@ export const getAccounts = () => {
   });
 }
 
+export const isUserLogged = () => {
+  const token = localStorage.userToken;
+  const key = localStorage.userKey;
+  return Boolean(token && key);
+}
+
+
+
 export default {
   login,
   logout,
   getAccounts,
+  isUserLogged,
 }

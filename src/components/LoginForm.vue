@@ -1,15 +1,15 @@
 <template>
-  <form class="form">
+  <form class="form" @submit="submit($event)">
     <md-field>
       <label>Email</label>
-      <md-input type="email"  v-model="form.username"></md-input>
+      <md-input required type="email" v-model="form.username"></md-input>
     </md-field>
     <md-field>
       <label>Password</label>
-      <md-input type="password"  v-model="form.password"></md-input>
+      <md-input required type="password" v-model="form.password"></md-input>
     </md-field>
     <p class="md-subheading err" v-if="err">Error: {{err}}</p>
-    <md-button class="md-raised md-primary" @click="submit">Login</md-button>
+    <md-button type="submit" class="md-raised md-primary">Login</md-button>
   </form>
 </template>
  
@@ -22,14 +22,15 @@
     data() {
       return {
         form: new Form({
-          username: 'test@demo.webitel.com', // test@demo.webitel.com
-          password: 'T2eDYGfhy0rL3nW3' // T2eDYGfhy0rL3nW3
+          username: '', // test@demo.webitel.com
+          password: '' // T2eDYGfhy0rL3nW3
         }),
         err: null,
       }
     },
     methods: {
-      submit() {
+      submit(event) {
+        event.preventDefault();
         this.form.submit('login')
           .then(resp => {
             this.form.reset();
